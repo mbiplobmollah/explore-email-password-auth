@@ -5,7 +5,7 @@ function App() {
 
   return (
     <>
-     <h1>This is app page</h1>
+     <h1 className='text-5xl'>Explore Email Password Authentication</h1>
     </>
   )
 }
