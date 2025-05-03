@@ -1,4 +1,6 @@
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import React from 'react';
+import { auth } from '../../firebase.init';
 
 const Register = () => {
 
@@ -8,12 +10,19 @@ const Register = () => {
         const password = e.target.password.value
         console.log(email, password)
 
+        // create user
+
+        createUserWithEmailAndPassword(auth,email,password)
+        .then(result => console.log(result))
+        .catch(error=>console.log(error))
+
     }
 
     return (
-        <div>
-            <h1>This is the register page</h1>
-            <form onSubmit={handleRegister}  className='h-[300px] flex flex-col items-center justify-center space-y-4 bg-gray-400 w-[40%] mx-auto rounded-2xl'>
+        <div className='my-15'>
+
+            <form onSubmit={handleRegister}  className='h-[300px] flex flex-col items-center justify-center space-y-4 bg-gray-700 w-[40%] mx-auto rounded-2xl'>
+            <h1 className='text-white text-4xl font-semibold my-8'>Please Register</h1>
             {/* email field  */}
             <div className="join">
   <div>
@@ -57,7 +66,7 @@ const Register = () => {
     type="password"
     required
     placeholder="Password"
-    minlength="8"
+    minLength="8"
     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
     title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
   />
